@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>SamhitaFusion | Integrated Healthcare</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Outfit:wght@200;300;400;500;600;700;800&family=Rajdhani:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <script>
+      tailwind.config = {
+        darkMode: 'class',
+        theme: {
+          extend: {
+            fontFamily: {
+              sans: ['Inter', '-apple-system', 'BlinkMacSystemFont', 'system-ui', 'sans-serif'],
+              display: ['Outfit', 'sans-serif'],
+              mono: ['Rajdhani', 'SF Mono', 'Menlo', 'monospace'],
+            },
+            boxShadow: {
+              'glass': '0 8px 32px 0 rgba(0, 0, 0, 0.05)',
+              'apple-card': '0 8px 40px rgba(0, 0, 0, 0.12), 0 0 0 1px rgba(255, 255, 255, 0.1) inset',
+              'apple-glow': '0 0 20px rgba(0, 122, 255, 0.4)',
+              'apple-hover': '0 20px 40px rgba(0, 0, 0, 0.2), 0 0 0 1px rgba(255, 255, 255, 0.2) inset',
+              'neon-blue': '0 0 20px rgba(0, 122, 255, 0.6), 0 0 40px rgba(0, 122, 255, 0.3)',
+              'neon-teal': '0 0 20px rgba(20, 184, 166, 0.6), 0 0 40px rgba(20, 184, 166, 0.3)',
+            },
+            colors: {
+              primary: '#007AFF', // System Blue
+              secondary: '#34C759', // System Green
+              accent: '#5856D6', // System Purple
+              
+              // Apple Dark Mode Palette
+              'dark-bg': '#000000', 
+              'dark-surface': '#1C1C1E', 
+              'dark-elevated': '#2C2C2E',
+              'dark-text': '#F5F5F7', 
+              
+              'apple-gray': '#F2F2F7',
+            },
+            animation: {
+              'float': 'float 8s ease-in-out infinite',
+              'float-fast': 'float 4s ease-in-out infinite',
+              'pulse-slow': 'pulse 6s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+              'glow': 'glow 3s ease-in-out infinite alternate',
+              'scan': 'scan 4s linear infinite',
+              'shimmer': 'shimmer 2.5s linear infinite',
+              'gradient-x': 'gradient-x 15s ease infinite',
+            },
+            keyframes: {
+              float: {
+                '0%, 100%': { transform: 'translateY(0)' },
+                '50%': { transform: 'translateY(-15px)' },
+              },
+              glow: {
+                '0%': { boxShadow: '0 0 5px rgba(0, 122, 255, 0.3)' },
+                '100%': { boxShadow: '0 0 25px rgba(0, 122, 255, 0.6), 0 0 10px rgba(52, 199, 89, 0.4)' }
+              },
+              scan: {
+                '0%': { backgroundPosition: '0% 0%' },
+                '100%': { backgroundPosition: '0% 100%' },
+              },
+              shimmer: {
+                '0%': { backgroundPosition: '-1000px 0' },
+                '100%': { backgroundPosition: '1000px 0' },
+              },
+              'gradient-x': {
+                '0%, 100%': {
+                    'background-size': '200% 200%',
+                    'background-position': 'left center'
+                },
+                '50%': {
+                    'background-size': '200% 200%',
+                    'background-position': 'right center'
+                },
+              },
+            }
+          }
+        }
+      }
+    </script>
+    <style>
+      html {
+        scroll-behavior: smooth;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+      }
+      body { 
+        font-family: 'Inter', sans-serif; 
+        background-color: #F5F5F7; 
+        color: #1D1D1F;
+        overflow-x: hidden; 
+        transition: background-color 0.5s cubic-bezier(0.25, 0.1, 0.25, 1.0), color 0.5s; 
+      }
+      .dark body { 
+        background-color: #000000; 
+        color: #F5F5F7; 
+      }
+      
+      h1, h2, h3, h4, h5, h6 { font-family: 'Outfit', sans-serif; letter-spacing: -0.01em; }
+      
+      /* Futuristic Scrollbar */
+      ::-webkit-scrollbar { width: 8px; }
+      ::-webkit-scrollbar-track { background: transparent; }
+      ::-webkit-scrollbar-thumb { 
+        background: rgba(100, 116, 139, 0.5); 
+        border-radius: 10px; 
+        border: 2px solid transparent;
+        background-clip: content-box;
+      }
+      ::-webkit-scrollbar-thumb:hover { background: rgba(100, 116, 139, 0.8); border: 2px solid transparent; background-clip: content-box; }
+
+      /* GLASSMORPHISM 2.0 - APPLE STANDARD (VisionOS / macOS Sonoma Style) */
+      
+      .glass-panel-apple {
+        /* Light Mode: Ultra-premium frosted glass */
+        background: rgba(255, 255, 255, 0.65);
+        backdrop-filter: blur(25px) saturate(180%);
+        -webkit-backdrop-filter: blur(25px) saturate(180%);
+        border: 1px solid rgba(255, 255, 255, 0.4);
+        box-shadow: 
+          0 4px 24px -1px rgba(0, 0, 0, 0.05), 
+          inset 0 0 0 1px rgba(255, 255, 255, 0.3);
+      }
+      
+      .dark .glass-panel-apple {
+        /* Dark Mode: Deep, rich material */
+        background: rgba(20, 20, 22, 0.6);
+        border: 1px solid rgba(255, 255, 255, 0.08);
+        box-shadow: 
+          0 20px 50px rgba(0, 0, 0, 0.5),
+          inset 0 0 0 1px rgba(255, 255, 255, 0.05);
+      }
+
+      /* Premium Card Hover Effect */
+      .glass-card-hover {
+        transition: all 0.5s cubic-bezier(0.19, 1, 0.22, 1);
+        will-change: transform, box-shadow;
+      }
+      .glass-card-hover:hover {
+        transform: translateY(-6px) scale(1.01);
+        box-shadow: 
+          0 25px 50px rgba(0, 0, 0, 0.15), 
+          0 0 0 1px rgba(255, 255, 255, 0.6) inset;
+      }
+      .dark .glass-card-hover:hover {
+        box-shadow: 
+          0 30px 60px rgba(0, 0, 0, 0.6), 
+          0 0 0 1px rgba(255, 255, 255, 0.15) inset;
+        background: rgba(40, 40, 45, 0.7);
+      }
+
+      /* FUTURISTIC BUTTON - High Visibility */
+      .btn-futuristic {
+        position: relative;
+        overflow: hidden;
+        background: linear-gradient(135deg, #007AFF, #00C6FF);
+        color: white;
+        border: none;
+        box-shadow: 0 4px 15px rgba(0, 122, 255, 0.4);
+        transition: all 0.3s ease;
+      }
+      
+      .btn-futuristic::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 50%;
+        height: 100%;
+        background: linear-gradient(to right, transparent, rgba(255, 255, 255, 0.4), transparent);
+        transform: skewX(-25deg);
+        animation: shimmer 3s infinite;
+      }
+
+      .btn-futuristic:hover {
+        transform: translateY(-2px) scale(1.02);
+        box-shadow: 0 8px 25px rgba(0, 122, 255, 0.6);
+      }
+      
+      .btn-futuristic-secondary {
+         background: rgba(255, 255, 255, 0.1);
+         backdrop-filter: blur(10px);
+         border: 1px solid rgba(255, 255, 255, 0.2);
+         color: #1D1D1F;
+         transition: all 0.3s ease;
+      }
+      .dark .btn-futuristic-secondary {
+         color: white;
+         background: rgba(255, 255, 255, 0.05);
+      }
+      .btn-futuristic-secondary:hover {
+         background: rgba(255, 255, 255, 0.2);
+         border-color: rgba(255, 255, 255, 0.4);
+         transform: translateY(-2px);
+      }
+      
+      /* Noise Texture for subtle grain */
+      .bg-noise {
+        position: relative;
+      }
+      .bg-noise::before {
+        content: "";
+        position: fixed;
+        top: 0; left: 0; width: 100%; height: 100%;
+        background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.04'/%3E%3C/svg%3E");
+        pointer-events: none;
+        z-index: 50;
+      }
+
+      .perspective-1000 { perspective: 1000px; }
+      
+      @keyframes fadeInUp {
+        from { opacity: 0; transform: translate3d(0, 20px, 0); }
+        to { opacity: 1; transform: translate3d(0, 0, 0); }
+      }
+      .animate-fade-in-up {
+        animation: fadeInUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+      }
+    </style>
+
+<link rel="stylesheet" href="/index.css">
+</head>
+  <body class="bg-noise">
+    <div id="root"></div>
+  <script type="module" src="/index.tsx"></script>
+</body>
+</html>

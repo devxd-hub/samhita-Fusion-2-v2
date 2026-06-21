@@ -1,0 +1,14 @@
+/* SamhitaFusion - Global Styles */
+
+/* Reset and base styles that complement Tailwind */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+#root {
+  min-height: 100vh;
+}
